@@ -1,24 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
+
+// import AboutUs from "./component/AboutUs";
+import NavBar from "./component/NavBar";
+import Textform from "./component/Textform";
+import Alert from "./component/Alert";
+import React, { useState } from "react";
 
 function App() {
+
+  // const [showalert, setshowalert] = UseState()
+const [alert, setalert] = useState('null')
+const [mode, setmode] = useState('lg')
+
+const showalert=( message, type )=>{
+  setalert(
+     {
+      message: message,
+      type: type
+     }
+
+  )
+}
+const toggle =()=>
+{
+  if (mode==='lg') {
+    setmode('dark')
+    document.body.style.backgroundColor = 'black';
+    showalert("aark has been enable , sucsses")
+   
+  } else {
+    setmode('lg')
+    
+    document.body.style.backgroundColor = 'white';
+    showalert("light has been enable , sucsses ")
+  }
+}
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavBar about="about us" mode={mode} toggle={toggle} />
+      <div>
+        <Alert alert={alert} />
+      </div>
+      <div className="container my-3" >
+        <Textform heading="enter text" />
+      </div>
+      {/* <div className="container my-3" >
+<AboutUs/>
+</div> */}
+    </>
   );
 }
 
